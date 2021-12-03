@@ -1,0 +1,20 @@
+book_filename: "metaheuristics-book"
+new_session: true
+before_chapter_script: _common.R
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+
+
+rmd_files:
+  [
+    "index.Rmd",
+    "01-getting_started.Rmd",
+    "02-evolutionary_computation.Rmd",
+    "03-swarm-intelligence.Rmd",
+    "04-eda.Rmd",
+    "05-other_methods.Rmd",
+    "06-methapore_exposed.Rmd",
+    "07-practice_applications.Rmd"
+  ]

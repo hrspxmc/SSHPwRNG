@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 46 R Packages for MetOpt | Solving Some Hard Problems With RNG</title>
+<meta name="author" content="Bart Klimowski">
+<meta name="description" content="&lt;p&gt;This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.&lt;/p&gt;">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 46 R Packages for MetOpt | Solving Some Hard Problems With RNG">
+<meta property="og:type" content="book">
+<meta property="og:description" content="&lt;p&gt;This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.&lt;/p&gt;">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 46 R Packages for MetOpt | Solving Some Hard Problems With RNG">
+<meta name="twitter:description" content="&lt;p&gt;This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::bs4_book,
+set in the _output.yml file.&lt;/p&gt;">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.9/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.5.1/tabs.js"></script><script src="libs/bs3compat-0.2.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Solving Some Hard Problems With RNG</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="the-road-ahead.html">The Road Ahead</a></li>
+<li class="book-part">Getting Started</li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li><a class="" href="necessary-context.html"><span class="header-section-number">2</span> Necessary Context</a></li>
+<li><a class="" href="python-setup.html"><span class="header-section-number">3</span> Python Setup</a></li>
+<li><a class="" href="benchmarks.html"><span class="header-section-number">4</span> Benchmarks</a></li>
+<li><a class="" href="glossary.html"><span class="header-section-number">5</span> Glossary</a></li>
+<li class="book-part">Warming up</li>
+<li><a class="" href="introduction-1.html">Introduction</a></li>
+<li><a class="" href="stochastic-hill-climbing.html"><span class="header-section-number">7</span> Stochastic Hill Climbing</a></li>
+<li><a class="" href="simulated-annealing.html"><span class="header-section-number">8</span> Simulated Annealing</a></li>
+<li><a class="" href="adaptive-sa.html"><span class="header-section-number">9</span> Adaptive SA</a></li>
+<li><a class="" href="hybrid-sa.html"><span class="header-section-number">10</span> Hybrid SA</a></li>
+<li><a class="" href="treshold-accepting.html"><span class="header-section-number">11</span> Treshold Accepting</a></li>
+<li><a class="" href="what-next.html">What next?</a></li>
+<li class="book-part">Evolutionary Computation I</li>
+<li><a class="" href="introduction-2.html">Introduction</a></li>
+<li><a class="" href="genetic-algorithms-1.html"><span class="header-section-number">13</span> Genetic Algorithms</a></li>
+<li><a class="" href="evolution-strategies.html"><span class="header-section-number">14</span> Evolution Strategies</a></li>
+<li><a class="" href="genetic-programming-1.html"><span class="header-section-number">15</span> Genetic Programming</a></li>
+<li><a class="" href="differential-evolution-1.html"><span class="header-section-number">16</span> Differential Evolution</a></li>
+<li class="book-part">Evolutionary Computation II</li>
+<li><a class="" href="introduction-3.html">Introduction</a></li>
+<li><a class="" href="nsga-2.html"><span class="header-section-number">18</span> NSGA-2</a></li>
+<li><a class="" href="cma-es.html"><span class="header-section-number">19</span> CMA-ES</a></li>
+<li><a class="" href="jade.html"><span class="header-section-number">20</span> JADE</a></li>
+<li><a class="" href="cartesian-gp.html"><span class="header-section-number">21</span> Cartesian GP</a></li>
+<li><a class="" href="lcs.html"><span class="header-section-number">22</span> LCS</a></li>
+<li><a class="" href="neat.html"><span class="header-section-number">23</span> NEAT</a></li>
+<li class="book-part">Swarm Intelligence</li>
+<li><a class="" href="introduction-4.html">Introduction</a></li>
+<li><a class="" href="stochastic-diffusion-search-1.html"><span class="header-section-number">25</span> Stochastic Diffusion Search</a></li>
+<li><a class="" href="particles-swarm-optimization-1.html"><span class="header-section-number">26</span> Particles Swarm Optimization</a></li>
+<li><a class="" href="ant-colony-optimization-1.html"><span class="header-section-number">27</span> Ant Colony Optimization</a></li>
+<li><a class="" href="firefly-search-1.html"><span class="header-section-number">28</span> Firefly Search</a></li>
+<li class="book-part">Estimation of Distribution</li>
+<li><a class="" href="introduction-5.html">Introduction</a></li>
+<li><a class="" href="pbil.html"><span class="header-section-number">29</span> PBIL</a></li>
+<li><a class="" href="compact-ga.html"><span class="header-section-number">30</span> Compact GA</a></li>
+<li><a class="" href="mimic.html"><span class="header-section-number">31</span> MIMIC</a></li>
+<li><a class="" href="cross-entropy-method-1.html"><span class="header-section-number">32</span> Cross Entropy Method</a></li>
+<li><a class="" href="bayesian-optimization.html"><span class="header-section-number">33</span> Bayesian Optimization</a></li>
+<li class="book-part">Other Methods</li>
+<li><a class="" href="introduction-6.html">Introduction</a></li>
+<li><a class="" href="tabu-search-1.html"><span class="header-section-number">34</span> Tabu Search</a></li>
+<li><a class="" href="scattered-search-1.html"><span class="header-section-number">35</span> Scattered Search</a></li>
+<li><a class="" href="grasp-1.html"><span class="header-section-number">36</span> GRASP</a></li>
+<li><a class="" href="spiral-optimization-1.html"><span class="header-section-number">37</span> Spiral Optimization</a></li>
+<li><a class="" href="extremal-optimization-1.html"><span class="header-section-number">38</span> Extremal Optimization</a></li>
+<li><a class="" href="fractal-search-1.html"><span class="header-section-number">39</span> Fractal Search</a></li>
+<li><a class="" href="equilibrum-optimizer-1.html"><span class="header-section-number">40</span> Equilibrum Optimizer</a></li>
+<li class="book-part">Algorithms Gone Wild</li>
+<li><a class="" href="introduction-7.html">Introduction</a></li>
+<li><a class="" href="harmony-search-1.html"><span class="header-section-number">41</span> Harmony Search</a></li>
+<li><a class="" href="gravitational-search-1.html"><span class="header-section-number">42</span> Gravitational Search</a></li>
+<li><a class="" href="cat-swarm-optimization-1.html"><span class="header-section-number">43</span> Cat Swarm Optimization</a></li>
+<li><a class="" href="imperialist-competetive-algorithm.html"><span class="header-section-number">44</span> Imperialist Competetive Algorithm</a></li>
+<li class="book-part">Software and practice</li>
+<li><a class="" href="practicioner-guide-to-deap.html"><span class="header-section-number">A</span> Practicioner Guide to DEAP</a></li>
+<li><a class="active" href="r-packages-for-metopt.html"><span class="header-section-number">B</span> R Packages for MetOpt</a></li>
+<li><a class="" href="parallelizing-algorithms.html"><span class="header-section-number">C</span> Parallelizing Algorithms</a></li>
+<li><a class="" href="parameters-selection.html"><span class="header-section-number">D</span> Parameters Selection</a></li>
+<li><a class="" href="how-to-compare-algorithms.html"><span class="header-section-number">E</span> How To Compare Algorithms</a></li>
+<li class="book-part">Modern Applications</li>
+<li><a class="" href="automl.html"><span class="header-section-number">F</span> AutoML</a></li>
+<li><a class="" href="reienforcement-learning.html"><span class="header-section-number">G</span> Reienforcement Learning</a></li>
+<li><a class="" href="neuroevolution.html"><span class="header-section-number">H</span> Neuroevolution</a></li>
+<li><a class="" href="evolved-art.html"><span class="header-section-number">I</span> Evolved Art</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-packages-for-metopt" class="section level1" number="46">
+<h1>
+<span class="header-section-number">46</span> R Packages for MetOpt<a class="anchor" aria-label="anchor" href="#r-packages-for-metopt"><i class="fas fa-link"></i></a>
+</h1>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="practicioner-guide-to-deap.html"><span class="header-section-number">A</span> Practicioner Guide to DEAP</a></div>
+<div class="next"><a href="parallelizing-algorithms.html"><span class="header-section-number">C</span> Parallelizing Algorithms</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#r-packages-for-metopt"><span class="header-section-number">B</span> R Packages for MetOpt</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/07-practice_applications.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/07-practice_applications.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Solving Some Hard Problems With RNG</strong>" was written by Bart Klimowski. It was last built on 2021-12-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
